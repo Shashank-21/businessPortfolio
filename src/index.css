@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Arsenal Regular';
+    src: local('Arsenal-Regular'), url('./fonts/Arsenal-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter Thin';
+    src: local('Inter-Thin'), url('./fonts/Inter-Thin.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter Regular';
+    src: local('Inter-Regular'), url('./fonts/Inter-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter Light';
+    src: local('Inter-Light'), url('./fonts/Inter-Light.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter ExtraLight';
+    src: local('Inter-ExtraLight'), url('./fonts/Inter-ExtraLight.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter Bold';
+    src: local('Inter-Bold'), url('./fonts/Inter-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter ExtraBold';
+    src: local('Inter-ExtraBold'), url('./fonts/Inter-ExtraBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter SemiBold';
+    src: local('Inter-SemiBold'), url('./fonts/Inter-SemiBold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Literata Regular';
+    src: local('Literata-Regular'), url('./fonts/Literata-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata Medium';
+    src: local('Literata-Medium'), url('./fonts/Literata-Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata Light';
+    src: local('Literata-Light'), url('./fonts/Literata-Light.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata ExtraLight';
+    src: local('Literata-ExtraLight'), url('./fonts/Literata-ExtraLight.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata Bold';
+    src: local('Literata-Bold'), url('./fonts/Literata-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata Black';
+    src: local('Literata-Black'), url('./fonts/Literata-Black.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata ExtraBold';
+    src: local('Literata-ExtraBold'), url('./fonts/Literata-ExtraBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata SemiBold';
+    src: local('Literata-SemiBold'), url('./fonts/Literata-SemiBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata Italic';
+    src: local('Literata-Italic'), url('./fonts/Literata-Italic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata MediumItalic';
+    src: local('Literata-MediumItalic'), url('./fonts/Literata-MediumItalic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata LightItalic';
+    src: local('Literata-LightItalic'), url('./fonts/Literata-LightItalic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata ExtraLightItalic';
+    src: local('Literata-ExtraLightItalic'), url('./fonts/Literata-ExtraLightItalic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata BoldItalic';
+    src: local('Literata-BoldItalic'), url('./fonts/Literata-BoldItalic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata BlackItalic';
+    src: local('Literata-BlackItalic'), url('./fonts/Literata-BlackItalic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata ExtraBoldItalic';
+    src: local('Literata-ExtraBoldItalic'), url('./fonts/Literata-ExtraBoldItalic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Literata SemiBoldItalic';
+    src: local('Literata-SemiBoldItalic'), url('./fonts/Literata-SemiBoldItalic.ttf') format('truetype');
+  }
+  
+  html {
+    font-family: "Literata Regular"; 
+  }
+  .light {
+    
+    background-color: rgb(248, 248, 248);
+    color: rgb(40,40,40)
+  }
+
+  .bold {
+    font-family: "Literata Bold";
+  }
+  .semi-bold
+  {
+    font-family: "Literata SemiBold";
+  }
+
+  .dark {
+    
+    background-color: rgb(40, 40, 40);
+    color: rgb(248, 248, 248)
+  }
+}
+.flippable-card-container-dimensions{
+  margin: auto;
+  height: 500px;
+  width: 300px;
+}
+
+.flippable-card-container {
+  perspective: 1000px;
+}
+.card {
+  cursor: pointer;
+  height:100%;
+  width: 100%;
+
+  transform-style: preserve-3d;
+
+  position: relative;
+  border-radius: 5px;
+  border: 5px solid black;
+  box-shadow: 0px 0px 15px rgba(230, 230, 230, 0.8);
+}
+
+.card-placeholder {
+  cursor: pointer;
+  height:100%;
+  width: 100%;
+
+  transform-style: preserve-3d;
+
+  position: absolute;
+ 
+}
+
+.backface-hidden{
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front,.card-back{
+  height:100%;
+  width: 100%;
+
+  position:absolute;
+  
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-front{
+  background-color: rgb(234, 246, 207);
+}
+
+.card-back {
+  background-color: rgb(208, 228, 255);
+  transform: rotateY(180deg);
+}
+
+.flip-exit {
+  transform: rotateY(0deg);
+}
+
+.flip-exit-active {
+  transform: rotateY(180deg);
+  transition: transform 750ms;
+  transition-timing-function: cubic-bezier(0.57,0.21,0.69,1.25);
+}
+
+.flip-exit-done {
+  transform: rotateY(180deg);
+}
+.flip-enter {
+  transform: rotateY(180deg);
+}
+
+.flip-enter-active {
+  transform: rotateY(0deg);
+  transition: transform 750ms;
+  transition-timing-function: cubic-bezier(0.57,0.21,0.69,1.25);
+}
+
+.flip-enter-done {
+  transform: rotateY(0deg);
+}
+
+.portrait {
+  height: 32%;
+  width: 24%;
+}
+
+.page{
+  position:relative
+}
+
+.page-enter {
+  opacity: 0;
+  
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
