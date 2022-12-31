@@ -23,7 +23,7 @@ function Footer({ theme }) {
     },
   ];
   return (
-    <div className={`${theme}`}>
+    <div className={`${theme === "light" ? "bg-blue-100" : "bg-[#111111]"}`}>
       <div className="p-5 w-full flex flex-row justify-around items-start">
         <div className="flex flex-col justify-around items-center ">
           <h4 className="text-xl bold">Quick Links:</h4>
@@ -35,8 +35,8 @@ function Footer({ theme }) {
           </Link>
         </div>
         <div>
-          <div className="text-lg text-center bold">
-            Follow us on Social Media:
+          <div className="text-xl text-center bold">
+            Follow me on Social Media:
           </div>
           <div className="text-2xl flex flex-row justify-center items-center pt-3">
             {socialMediaHandles.map((handle, i) => {
@@ -53,20 +53,20 @@ function Footer({ theme }) {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <h4 className="text-xl bold">Contact us:</h4>
+          <h4 className="text-xl bold">Contact me:</h4>
           <div className="flex flex-row justify-start text-xl items-center pt-3">
-            <AiFillPhone className="mr-5" />
-            <AiOutlineWhatsApp className="mr-5" />
+            <AiFillPhone className="mr-5 text-2xl" />
+            <AiOutlineWhatsApp className="mr-5 text-2xl" />
             +91-7349172510
           </div>
           <div className="flex flex-row justify-start text-xl items-center pt-3">
-            <AiOutlineMail className="mr-5" />
+            <AiOutlineMail className="mr-5 text-2xl" />
             shashank@excelirate.net
           </div>
         </div>
       </div>
       <div className="w-full text-md flex flex-row justify-center items-center py-5">
-        <AiOutlineCopyrightCircle className="mr-3" />
+        <AiOutlineCopyrightCircle className="text-lg mr-3" />
         2023 Excelirate. All rights reserved.
       </div>
     </div>

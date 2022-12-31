@@ -10,7 +10,7 @@ function AboutPage() {
   const values = useSelector((state) => state.values);
 
   return (
-    <div className={`${theme} p-10 page`}>
+    <div className={`${theme} p-10`}>
       <div className="flex flex-col justify-center items-center py-5">
         <h1 className="text-2xl mb-3 semi-bold">Stories by</h1>
         {theme === "light" ? (
@@ -20,18 +20,22 @@ function AboutPage() {
         )}
       </div>
       <div
-        className={`bg-gradient-to-br ${
+        className={`border ${
           theme === "light"
-            ? "from-sky-300 via-cyan-200 to-teal-300"
-            : "from-cyan-900 via-sky-700 to-blue-900"
-        } mx-auto my-10 container px-10 py-5 rounded-lg`}
+            ? "bg-blue-200 border-blue-800"
+            : "bg-neutral-700 border-neutral-200"
+        } mx-auto my-10 container rounded-xl pb-5`}
       >
         <h3
-          className={`text-3xl semi-bold text-center mx-auto rounded-lg p-2 w-full`}
+          className={`text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full ${
+            theme === "light"
+              ? "bg-blue-800 text-blue-50"
+              : "bg-neutral-200 text-neutral-900"
+          }`}
         >
-          Why are we here?
+          Why am I here?
         </h3>
-        <p className="text-lg mt-2 flex flex-col justify-around leading-loose">
+        <p className="text-lg mt-2 flex flex-col justify-around leading-loose mx-10 my-5">
           Here are two sentences, conveying the same message:
           <span className="semi-bold py-1 text-center mx-auto my-3 text-2xl px-2 hover:scale-105 hover:duration-200 cursor-pointer">
             On a given day, about 1000 couples buy 3000 baby-care products from
@@ -65,26 +69,31 @@ function AboutPage() {
           <br />
           <br />
           <span className="text-2xl text-center bold">
-            And that's exactly where we come in!
+            And that's exactly where I come in!
           </span>
-          <br />
-          We create an irresistable story for your brand that helps you connect
-          with your consumers, and ensure that having great numbers is one of
-          the many by-products of our collective action!
+          <br />I create an irresistable story for your brand that helps you
+          connect with your consumers, and ensure that having great numbers is
+          one of the many by-products of our collective action!
         </p>
         <Button primary className="my-5 mx-auto">
-          Tell me your story!
+          View Services
         </Button>
       </div>
       <div
-        className={`bg-gradient-to-br ${
+        className={`border ${
           theme === "light"
-            ? "from-green-400 via-lime-300 to-emerald-400"
-            : "from-green-900 via-lime-800 to-emerald-900"
-        } px-10 py-5 my-10 container rounded-xl mx-auto flex flex-row justify-around flex-wrap`}
+            ? "bg-blue-200 border-blue-800"
+            : "bg-neutral-700 border-neutral-200"
+        } my-10 container rounded-xl mx-auto flex flex-row justify-around flex-wrap`}
       >
-        <h3 className="text-3xl bold text-center mx-auto rounded-lg p-2 w-full">
-          Why choose us?
+        <h3
+          className={`text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full ${
+            theme === "light"
+              ? "bg-blue-800 text-blue-50"
+              : "bg-neutral-200 text-neutral-900"
+          }`}
+        >
+          Why choose me?
         </h3>
         {values.map((value) => {
           return (
@@ -98,13 +107,19 @@ function AboutPage() {
         })}
       </div>
       <div
-        className={`bg-gradient-to-br ${
+        className={`border ${
           theme === "light"
-            ? "from-amber-400 via-orange-300 to-red-400"
-            : "from-amber-800 via-orange-700 to-red-800"
-        } container mx-auto rounded-xl my-10 px-10 py-5`}
+            ? "bg-blue-200 border-blue-800"
+            : "bg-neutral-700 border-neutral-200"
+        } container mx-auto rounded-xl my-10`}
       >
-        <h3 className="text-3xl bold text-center mx-auto rounded-lg mb-5 w-full">
+        <h3
+          className={`text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full ${
+            theme === "light"
+              ? "bg-blue-800 text-blue-50"
+              : "bg-neutral-200 text-neutral-900"
+          }`}
+        >
           About me
         </h3>
         <div className="flex flex-row justify-around">
@@ -113,7 +128,7 @@ function AboutPage() {
             src={MyPic}
             alt="Me in mountains"
           />
-          <p className="basis-2/3 ml-10 text-xl text-center my-auto">
+          <p className="basis-2/3 mx-10 text-lg text-center my-auto">
             Hi! I'm Shashank, founder of
             <strong className="semi-bold ml-2">'Stories by Excelirate'</strong>.
             <br />
@@ -130,9 +145,9 @@ function AboutPage() {
             businesses. After all, the core purpose of any business is service!
             <br />
             There's a lot more to my story, as there is to yours. So, why don't
-            you tell me your story?
-            <Button primary className="my-10 text-lg mx-auto">
-              View Services
+            we start here?
+            <Button primary className="mt-10 text-lg mx-auto">
+              Tell me your story
             </Button>
           </p>
         </div>

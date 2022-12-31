@@ -15,7 +15,7 @@ function HomePage() {
   };
 
   return (
-    <div className={`h-screen ${theme} p-10 page`}>
+    <div className={`h-screen ${theme} p-10`}>
       <div className="flex flex-col items-center justify-around h-4/5 p-10">
         {theme === "light" ? (
           <ExpandedSvg className="scale-75 text-center" />
