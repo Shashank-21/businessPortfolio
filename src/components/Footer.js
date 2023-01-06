@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-function Footer({ theme }) {
+function Footer() {
   const socialMediaHandles = [
     {
       icon: <FaLinkedinIn />,
@@ -23,7 +23,7 @@ function Footer({ theme }) {
     },
   ];
   return (
-    <div className={`${theme === "light" ? "bg-blue-100" : "bg-[#111111]"}`}>
+    <div className="bg-blue-100">
       <div className="p-5 w-full flex flex-row justify-around items-start">
         <div className="flex flex-col justify-around items-center ">
           <h4 className="text-xl bold">Quick Links:</h4>
@@ -32,6 +32,9 @@ function Footer({ theme }) {
           </Link>
           <Link to="/services" className="text-xl pt-3">
             Services
+          </Link>
+          <Link to="/contact" className="text-xl pt-3">
+            Contact Me
           </Link>
         </div>
         <div>

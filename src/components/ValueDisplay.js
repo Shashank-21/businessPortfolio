@@ -1,12 +1,10 @@
 import { CSSTransition } from "react-transition-group";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
-function ValueDisplay({ image, title, description }) {
+function ValueDisplay({ image, title, description, creditLink, creditText }) {
   const [isFront, setIsFront] = useState(true);
   const [isHoveringOver, setIsHoveringOver] = useState(false);
-
-  const theme = useSelector((state) => state.theme);
+  console.log(creditLink, creditText);
 
   const handleMouseEnter = () => {
     if (isFront)
@@ -28,24 +26,10 @@ function ValueDisplay({ image, title, description }) {
   };
 
   const backContent = (
-    <div
-      className={`${
-        theme === "light" ? "bg-blue-900" : "bg-stone-200"
-      } flex flex-col justify-center items-center rounded-xl w-full h-full opacity-100 absolute inset-0 card-back`}
-    >
-      <h3
-        className={`${
-          theme === "light" ? "text-blue-50" : "text-stone-900"
-        } text-4xl`}
-      >
-        {title.toUpperCase()}
-      </h3>
+    <div className="flex flex-col justify-center items-center rounded-xl w-full h-full opacity-100 absolute inset-0 card-back bg-blue-900">
+      <h3 className="text-blue-50 text-4xl">{title.toUpperCase()}</h3>
       {description && (
-        <p
-          className={`${
-            theme === "light" ? "text-blue-50" : "text-stone-900"
-          } text-xl text-center text-white m-6`}
-        >
+        <p className="text-blue-50 text-xl text-center text-white m-6">
           {description}
         </p>
       )}
@@ -56,6 +40,15 @@ function ValueDisplay({ image, title, description }) {
     <div className="flex flex-col justify-center items-center rounded-xl bg-gray-800 opacity-75 w-full h-full absolute inset-0">
       <h3 className="text-4xl text-white">{title.toUpperCase()}</h3>
       <p className="text-white">Click to know more</p>
+      <p className="text-white mt-20">Image Credit:</p>
+      <a
+        href={creditLink}
+        className="text-white"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {creditText}
+      </a>
     </div>
   );
 
@@ -68,7 +61,7 @@ function ValueDisplay({ image, title, description }) {
 
   return (
     <div
-      className="relative w-2/5 h-80 m-5 cursor-pointer flippable-card-container"
+      className="relative w-2/5 h-96 m-5 cursor-pointer flippable-card-container"
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

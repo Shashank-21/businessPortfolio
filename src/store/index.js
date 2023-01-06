@@ -1,19 +1,31 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { themeReducer, changeTheme } from "./slices/theme-slice";
+import { serviceCategoriesApi } from "./apis/category-api";
 import { changeValue, valuesReducer } from "./slices/values-slice";
-import {
-  changeService,
-  serviceCategoriesReducer,
-} from "./slices/service-categories-slice";
 import { currencyReducer, changeCurrency } from "./slices/currency-slice";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import {
+  selectedServiceReducer,
+  changeSelectedService,
+} from "./slices/selected-service-slice";
 
 export const store = configureStore({
   reducer: {
-    theme: themeReducer,
     values: valuesReducer,
-    serviceCategories: serviceCategoriesReducer,
+    selectedService: selectedServiceReducer,
     currency: currencyReducer,
+    [serviceCategoriesApi.reducerPath]: serviceCategoriesApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(serviceCategoriesApi.middleware);
   },
 });
 
-export { changeTheme, changeValue, changeService, changeCurrency };
+setupListeners(store.dispatch);
+
+export { changeValue, changeCurrency, changeSelectedService };
+
+export {
+  useFetchServiceCategoriesQuery,
+  useUpdateTestimonialsMutation,
+  useAddServiceRequestMutation,
+} from "./apis/category-api";

@@ -1,41 +1,24 @@
 import { useSelector } from "react-redux";
 import { ReactComponent as ExpandedSvg } from "../svg/main-text.svg";
-import { ReactComponent as ExpandedSvgDark } from "../svg/main-text-dark.svg";
 import ValueDisplay from "../components/ValueDisplay";
 import MyPic from "../images-constant/IMG_1119.png";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 function AboutPage() {
-  const theme = useSelector((state) => state.theme);
   const values = useSelector((state) => state.values);
-
+  const navigate = useNavigate();
   return (
-    <div className={`${theme} p-10`}>
+    <div className="p-10">
       <div className="flex flex-col justify-center items-center py-5">
         <h1 className="text-2xl mb-3 semi-bold">Stories by</h1>
-        {theme === "light" ? (
-          <ExpandedSvg className="h-9 w-64" />
-        ) : (
-          <ExpandedSvgDark className=" h-9 w-64" />
-        )}
+        <ExpandedSvg className="h-9 w-64" />
       </div>
-      <div
-        className={`border ${
-          theme === "light"
-            ? "bg-blue-200 border-blue-800"
-            : "bg-neutral-700 border-neutral-200"
-        } mx-auto my-10 container rounded-xl pb-5`}
-      >
-        <h3
-          className={`text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full ${
-            theme === "light"
-              ? "bg-blue-800 text-blue-50"
-              : "bg-neutral-200 text-neutral-900"
-          }`}
-        >
+      <div className="border bg-blue-100 border-blue-500 mx-auto my-10 container rounded-xl pb-5 ">
+        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300">
           Why am I here?
         </h3>
-        <p className="text-lg mt-2 flex flex-col justify-around leading-loose mx-10 my-5">
+        <p className="text-lg mt-2 flex flex-col justify-around mx-10 my-5 leading-loose">
           Here are two sentences, conveying the same message:
           <span className="semi-bold py-1 text-center mx-auto my-3 text-2xl px-2 hover:scale-105 hover:duration-200 cursor-pointer">
             On a given day, about 1000 couples buy 3000 baby-care products from
@@ -75,24 +58,18 @@ function AboutPage() {
           connect with your consumers, and ensure that having great numbers is
           one of the many by-products of our collective action!
         </p>
-        <Button primary className="my-5 mx-auto">
+        <Button
+          primary
+          className="my-5 mx-auto"
+          onClick={() => {
+            navigate("/services");
+          }}
+        >
           View Services
         </Button>
       </div>
-      <div
-        className={`border ${
-          theme === "light"
-            ? "bg-blue-200 border-blue-800"
-            : "bg-neutral-700 border-neutral-200"
-        } my-10 container rounded-xl mx-auto flex flex-row justify-around flex-wrap`}
-      >
-        <h3
-          className={`text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full ${
-            theme === "light"
-              ? "bg-blue-800 text-blue-50"
-              : "bg-neutral-200 text-neutral-900"
-          }`}
-        >
+      <div className="border bg-blue-100 border-blue-500 my-10 container rounded-xl mx-auto flex flex-row justify-around flex-wrap">
+        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300">
           Why choose me?
         </h3>
         {values.map((value) => {
@@ -102,24 +79,14 @@ function AboutPage() {
               title={value.title}
               image={value.src}
               description={value.description}
+              creditText={value.creditText}
+              creditLink={value.creditLink}
             />
           );
         })}
       </div>
-      <div
-        className={`border ${
-          theme === "light"
-            ? "bg-blue-200 border-blue-800"
-            : "bg-neutral-700 border-neutral-200"
-        } container mx-auto rounded-xl my-10`}
-      >
-        <h3
-          className={`text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full ${
-            theme === "light"
-              ? "bg-blue-800 text-blue-50"
-              : "bg-neutral-200 text-neutral-900"
-          }`}
-        >
+      <div className="border bg-blue-100 border-blue-500 container mx-auto rounded-xl my-10">
+        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300">
           About me
         </h3>
         <div className="flex flex-row justify-around">
@@ -146,7 +113,13 @@ function AboutPage() {
             <br />
             There's a lot more to my story, as there is to yours. So, why don't
             we start here?
-            <Button primary className="mt-10 text-lg mx-auto">
+            <Button
+              primary
+              className="mt-10 text-lg mx-auto"
+              onClick={() => {
+                navigate("/contact");
+              }}
+            >
               Tell me your story
             </Button>
           </p>

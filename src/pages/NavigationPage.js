@@ -1,6 +1,4 @@
 import { createRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { changeTheme } from "../store";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { useOutlet, useLocation } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
@@ -28,24 +26,10 @@ function NavigationPage() {
   const location = useLocation();
   const currentOutlet = useOutlet();
   const result = routes.find((route) => route.path === location.pathname) ?? {};
-  console.log(result);
 
-  const dispatch = useDispatch();
-  const theme = useSelector((state) => {
-    return state.theme;
-  });
-
-  const handleThemeChange = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    dispatch(changeTheme(newTheme));
-  };
   return (
     <div>
-      <NavigationBar
-        routes={routes}
-        theme={theme}
-        handleThemeChange={handleThemeChange}
-      />
+      <NavigationBar routes={routes} />
       <SwitchTransition>
         <CSSTransition
           key={location.key}
@@ -54,12 +38,15 @@ function NavigationPage() {
           classNames="page"
           unmountOnExit
         >
-          <div ref={result.nodeRef} className="page">
+          <div
+            ref={result.nodeRef}
+            className="page leading-loose tracking-wide"
+          >
             {currentOutlet}
           </div>
         </CSSTransition>
       </SwitchTransition>
-      {location.pathname !== "/" && <Footer theme={theme} />}
+      {location.pathname !== "/" && <Footer />}
     </div>
   );
 }
