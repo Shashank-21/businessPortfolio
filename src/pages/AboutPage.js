@@ -20,11 +20,11 @@ function AboutPage() {
         </h3>
         <p className="text-lg mt-2 flex flex-col justify-around mx-10 my-5 leading-loose">
           Here are two sentences, conveying the same message:
-          <span className="semi-bold py-1 text-center mx-auto my-3 text-2xl px-2 hover:scale-105 hover:duration-200 cursor-pointer">
+          <span className="semi-bold py-1 text-center mx-auto my-3 text-2xl px-2 cursor-pointer">
             On a given day, about 1000 couples buy 3000 baby-care products from
             Baby Champ stores.
           </span>
-          <span className="semi-bold py-1 text-center mx-auto my-3 text-2xl px-2 hover:scale-105 hover:duration-200 cursor-pointer">
+          <span className="semi-bold py-1 text-center mx-auto my-3 text-2xl px-2 cursor-pointer">
             Thousands of parents trust Baby Champ to give the best care for
             their babies. Wanna know why?
           </span>
