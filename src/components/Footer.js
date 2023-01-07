@@ -37,7 +37,7 @@ function Footer() {
             Contact Me
           </Link>
         </div>
-        <div>
+        <div className="ml-16">
           <div className="text-xl text-center bold">Profile Links:</div>
           <div className="text-2xl flex flex-row justify-center items-center pt-3">
             {socialMediaHandles.map((handle, i) => {
