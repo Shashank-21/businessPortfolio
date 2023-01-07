@@ -38,9 +38,7 @@ function Footer() {
           </Link>
         </div>
         <div>
-          <div className="text-xl text-center bold">
-            Follow me on Social Media:
-          </div>
+          <div className="text-xl text-center bold">Profile Links:</div>
           <div className="text-2xl flex flex-row justify-center items-center pt-3">
             {socialMediaHandles.map((handle, i) => {
               return (
