@@ -26,6 +26,5 @@ export { changeValue, changeCurrency, changeSelectedService };
 
 export {
   useFetchServiceCategoriesQuery,
-  useUpdateTestimonialsMutation,
-  useAddServiceRequestMutation,
+  useAddDataMutation,
 } from "./apis/category-api";

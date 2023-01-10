@@ -9,10 +9,10 @@ function NavigationBar({ routes }) {
   const dispatch = useDispatch();
   const currency = useSelector((state) => state.currency);
   const activeLinkClasses =
-    "cursor-pointer text-xl mx-1 px-3 pt-2 pb-1 border-b-4 border-blue-800 bg-blue-300";
+    "cursor-pointer text-xl mx-1 px-3 pt-2 pb-1 border-b-4 border-blue-800 bg-blue-300 shadow-md";
 
   return (
-    <nav className="flex flex-row bg-blue-100 justify-between items-center py-5">
+    <nav className="flex flex-row bg-blue-200 justify-between items-center py-5 shadow-lg">
       {routes
         .filter((route) => {
           return route.path === "/" && route.renderLink;

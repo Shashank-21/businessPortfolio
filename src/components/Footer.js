@@ -23,7 +23,7 @@ function Footer() {
     },
   ];
   return (
-    <div className="bg-blue-100">
+    <div className="bg-blue-200 shadow-lg">
       <div className="p-5 w-full flex flex-row justify-around items-start">
         <div className="flex flex-col justify-around items-center ">
           <h4 className="text-xl bold">Quick Links:</h4>

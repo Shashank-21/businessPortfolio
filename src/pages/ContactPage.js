@@ -3,13 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
 import {
-  useAddServiceRequestMutation,
+  useAddDataMutation,
   useFetchServiceCategoriesQuery,
   changeSelectedService,
-  changeCurrency,
 } from "../store";
 import { getCountryCallingCode } from "libphonenumber-js";
 import { useNavigate } from "react-router-dom";
+import {
+  getCategoriesAndServicesList,
+  getServiceRequestData,
+} from "../utils/utility-functions";
 
 function ContactPage() {
   const navigate = useNavigate();
@@ -25,8 +28,9 @@ function ContactPage() {
       value: `+${countryCode}`,
     };
   });
-  const [addServiceRequest] = useAddServiceRequestMutation();
+  const [addServiceRequest] = useAddDataMutation();
   const { data } = useFetchServiceCategoriesQuery();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
@@ -36,36 +40,8 @@ function ContactPage() {
   const [timePicked, setTimePicked] = useState("");
   const [infoText, setInfoText] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const serviceList = [];
-  const categoryList = [];
-  const reducedCategoryList = [];
-  if (data) {
-    for (let category of data) {
-      for (let serviceItem of category.services) {
-        serviceList.push({
-          label: serviceItem.serviceName,
-          value: serviceItem.serviceName,
-          serviceCategory: category.categoryName,
-        });
-        categoryList.push({
-          label: category.categoryName,
-          value: category.categoryName,
-        });
-        if (
-          reducedCategoryList.find((element) => {
-            return element.label === category.categoryName;
-          })
-        ) {
-          continue;
-        } else {
-          reducedCategoryList.push({
-            label: category.categoryName,
-            value: category.categoryName,
-          });
-        }
-      }
-    }
-  }
+  const { serviceList, categoryList, reducedCategoryList } =
+    getCategoriesAndServicesList(data);
 
   const onOptionChange = (option) => {
     if (
@@ -116,8 +92,6 @@ function ContactPage() {
   };
   const handleCodeChange = (selectedCode) => {
     setCode(selectedCode);
-    if (code === "IN") dispatch(changeCurrency("INR"));
-    else if (code === "US") dispatch(changeCurrency("USD"));
   };
   const handleInfoTextChange = (event) => {
     setInfoText(event.target.value);
@@ -143,30 +117,10 @@ function ContactPage() {
       additionalInformation: infoText,
     };
 
-    const updatedData = data
-      .filter(
-        (category) => category.categoryName === selectedService.categoryName
-      )
-      .map((category) => {
-        return {
-          ...category,
-          services: category.services.map((service) => {
-            if (service.serviceName !== selectedService.serviceName) {
-              return service;
-            } else {
-              if (!service.requests) {
-                return { ...service, requests: [requestData] };
-              } else {
-                return {
-                  ...service,
-                  requests: [...service.requests, requestData],
-                };
-              }
-            }
-          }),
-        };
-      })[0];
-    addServiceRequest({ category: selectedService.categoryName, updatedData });
+    addServiceRequest({
+      category: selectedService.categoryName,
+      updatedData: getServiceRequestData(data, selectedService, requestData),
+    });
     setIsSubmitted(true);
     setTimeout(() => {
       navigate("/");
@@ -175,12 +129,12 @@ function ContactPage() {
 
   return (
     <div className="flex flex-col justify-around">
-      <h3 className="text-5xl bold py-5 mt-5 text-center">Contact Me!</h3>
       <form
-        className="flex flex-col justify-around items-center border-2 border-blue-500 bg-blue-300 container mx-auto my-5 rounded-lg"
+        className="flex flex-col justify-around items-center bg-blue-200 shadow-xl container mx-auto my-16 rounded-lg"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col justify-between items-center px-10 py-5 border border-blue-900 my-5 w-11/12 rounded-lg">
+        <h3 className="text-5xl bold py-5 mt-5 text-center">Contact Me!</h3>
+        <div className="flex flex-col justify-between items-center px-10 py-5 shadow bg-blue-300 my-5 w-11/12 rounded-lg">
           <h4 className="text-2xl bold w-full text-center">Your Details</h4>
           <div className="flex flex-row items-center justify-between mx-5 mb-5 w-full">
             <div className="flex flex-row items-center justify-around mx-5 mb-5 w-2/5">
@@ -229,9 +183,9 @@ function ContactPage() {
             </p>
           )}
         </div>
-        <div className="flex flex-row justify-between items-center w-11/12">
-          <div className="flex flex-col justify-around py-5 my-5 w-2/5 border border-blue-900 rounded-lg">
-            <div className="flex flex-row justify-around items-center w-full">
+        <div className="flex flex-row justify-between items-center w-11/12 my-5">
+          <div className="flex flex-col justify-around py-5 my-5 w-2/5 shadow bg-blue-300 rounded-lg">
+            <div className="flex flex-row justify-around items-center w-full min-h-full">
               <p className="my-5 text-xl">Select Category</p>
               <Dropdown
                 onChange={onOptionChange}
@@ -254,7 +208,7 @@ function ContactPage() {
               />
             </div>
           </div>
-          <div className="flex flex-col justify-around py-5 my-5 w-2/5 border border-blue-900 items-center rounded-lg">
+          <div className="flex flex-col justify-around py-5 my-5 w-2/5 shadow bg-blue-300 items-center rounded-lg min-h-full">
             <h4 className="text-2xl bold my-3">
               When's a good time to call you?
             </h4>
@@ -280,7 +234,7 @@ function ContactPage() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-around w-11/12 border border-blue-900 rounded-lg">
+        <div className="flex flex-col justify-around w-11/12 shadow bg-blue-300 rounded-lg">
           <h4 className="text-2xl bold text-center my-5">
             Additional Information
           </h4>

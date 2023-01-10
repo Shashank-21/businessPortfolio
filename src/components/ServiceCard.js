@@ -25,17 +25,10 @@ function ServiceCard({ service }) {
     }
   )[0];
   const currency = useSelector((state) => state.currency);
-  console.log(currency);
   const [hasEnoughContent, setHasEnoughContent] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    console.log(
-      !!service.serviceDescription +
-        !!service.specialOffers +
-        service.samples.length +
-        service.testimonials.length
-    );
     if (
       !!service.serviceDescription +
       !!service.specialOffers +
@@ -44,8 +37,6 @@ function ServiceCard({ service }) {
     )
       setHasEnoughContent(true);
   }, [service]);
-
-  console.log(testimonialToDisplay);
 
   const handleExpansionClick = () => {
     setIsOpen((v) => !v);
@@ -61,6 +52,16 @@ function ServiceCard({ service }) {
     navigate("/contact");
   };
 
+  const handleTestimonialClick = () => {
+    dispatch(
+      changeSelectedService({
+        serviceName: service.serviceName,
+        categoryName: categoryList[serviceList.indexOf(service.serviceName)],
+      })
+    );
+    navigate("/testimonials/give");
+  };
+
   const openButton = isOpen ? (
     <GoChevronUp onClick={handleExpansionClick} />
   ) : (
@@ -68,7 +69,7 @@ function ServiceCard({ service }) {
   );
 
   return (
-    <div className="flex flex-col justify-around border rounded-xl px-5 py-5 my-5 w-2/5 h-fit bg-blue-300 border-blue-900">
+    <div className="flex flex-col justify-around rounded-xl px-5 py-5 my-5 w-2/5 h-fit bg-blue-300 shadow-xl">
       <div className="flex flex-row justify-between text-2xl">
         <h4 className="bold mx-auto">{service.serviceName}</h4>
         {hasEnoughContent && openButton}
@@ -84,7 +85,7 @@ function ServiceCard({ service }) {
             <p className="text-lg">{service.serviceDescription}</p>
           )}
           {service.specialOffers && (
-            <div className="text-xl w-fit mx-auto mt-5 bg-blue-900 text-white p-3">
+            <div className="text-xl w-fit mx-auto mt-5 bg-blue-900 text-white p-3 rounded-lg shadow-lg">
               {service.specialOffers}
             </div>
           )}
@@ -107,38 +108,49 @@ function ServiceCard({ service }) {
               <h4 className="text-xl bold mt-4">
                 Here's what the customers have to say:
               </h4>
-              <div className="px-10 py-5 rounded-lg my-3 w-4/5 m-auto bg-blue-900 text-blue-50">
-                <p>{testimonialToDisplay.feedback}</p>
+              <div className="px-10 py-5 rounded-lg my-3 w-4/5 m-auto bg-blue-900 text-blue-50 shadow-lg">
+                <p>{testimonialToDisplay.testimonial}</p>
                 <p className="mt-3 mr-2 text-2xl bold">
                   {testimonialToDisplay.name}
                 </p>
                 <p className="mr-2">- {testimonialToDisplay.designation}</p>
               </div>
               <div className="flex flex-row justify-center">
-                {service.testimonials.map((testimonial, index) => {
-                  return (
-                    <div
-                      className={`h-5 w-5 mx-3 rounded-full ${
-                        index === activeIndex ? "bg-blue-900" : "bg-blue-400"
-                      }`}
-                      onClick={() => {
-                        setActiveIndex(index);
-                      }}
-                    />
-                  );
-                })}
+                {service.testimonials
+                  .filter((testimonial) => testimonial.isShown)
+                  .map((testimonial, index) => {
+                    return (
+                      <div
+                        className={`h-5 w-5 mx-3 rounded-full shadow-md ${
+                          index === activeIndex ? "bg-blue-900" : "bg-blue-500"
+                        }`}
+                        onClick={() => {
+                          setActiveIndex(index);
+                        }}
+                      />
+                    );
+                  })}
               </div>
             </div>
           )}
         </div>
       )}
-      <Button
-        className="mt-10 text-lg w-fit mx-auto"
-        primary
-        onClick={handleBookingClick}
-      >
-        Book Now!
-      </Button>
+      <div className="mt-10 flex flex-col items-center justify-center">
+        <Button
+          className="mt-10 text-lg w-3/5 mx-5"
+          primary
+          onClick={handleBookingClick}
+        >
+          Book Now!
+        </Button>
+        <Button
+          className="mt-10 text-xs w-fit mx-5"
+          secondary
+          onClick={handleTestimonialClick}
+        >
+          Give Testimonial
+        </Button>
+      </div>
     </div>
   );
 }

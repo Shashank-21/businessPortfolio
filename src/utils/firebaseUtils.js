@@ -5,7 +5,7 @@ import {
   getFirestore,
   writeBatch,
   getDocs,
-  query,
+  updateDoc,
 } from "firebase/firestore";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -54,12 +54,20 @@ export const addCollectionAndDocuments = async (
 };
 
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, "categories");
-  const q = query(collectionRef);
-
-  const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.map((docSnapshot) =>
+  const collectionRef = collection(db, "service-categories");
+  const categorySnapshot = await getDocs(collectionRef);
+  const categoryMap = categorySnapshot.docs.map((docSnapshot) =>
     docSnapshot.data()
   );
-  return categoryMap;
+
+  return { data: categoryMap };
+};
+
+export const addData = async (args) => {
+  try {
+    const consultingRef = doc(db, "service-categories", args.category);
+    await updateDoc(consultingRef, args.updatedData);
+  } catch (error) {
+    console.log(error);
+  }
 };

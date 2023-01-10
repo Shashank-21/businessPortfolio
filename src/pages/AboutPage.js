@@ -14,8 +14,8 @@ function AboutPage() {
         <h1 className="text-2xl mb-3 semi-bold">Stories by</h1>
         <ExpandedSvg className="h-9 w-64" />
       </div>
-      <div className="border bg-blue-100 border-blue-500 mx-auto my-10 container rounded-xl pb-5 ">
-        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300">
+      <div className="bg-blue-200 shadow-xl mx-auto my-10 container rounded-xl pb-5 ">
+        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300 shadow-inner">
           Why am I here?
         </h3>
         <p className="text-lg mt-2 flex flex-col justify-around mx-10 my-5 leading-loose">
@@ -68,8 +68,8 @@ function AboutPage() {
           View Services
         </Button>
       </div>
-      <div className="border bg-blue-100 border-blue-500 my-10 container rounded-xl mx-auto flex flex-row justify-around flex-wrap">
-        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300">
+      <div className="bg-blue-200 shadow-xl my-10 container rounded-xl mx-auto flex flex-row justify-around flex-wrap">
+        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300 shadow-inner">
           Why choose me?
         </h3>
         {values.map((value) => {
@@ -85,8 +85,8 @@ function AboutPage() {
           );
         })}
       </div>
-      <div className="border bg-blue-100 border-blue-500 container mx-auto rounded-xl my-10">
-        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300">
+      <div className="bg-blue-200 shadow-xl container mx-auto rounded-xl my-10">
+        <h3 className="text-3xl bold text-center mt-0 rounded-t-xl py-5 mb-5 w-full bg-blue-300 shadow-inner">
           About me
         </h3>
         <div className="flex flex-row justify-around">
@@ -120,7 +120,7 @@ function AboutPage() {
                 navigate("/contact");
               }}
             >
-              Tell me your story
+              Let's Connect
             </Button>
           </p>
         </div>
