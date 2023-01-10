@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../svg/logo.svg";
 import { ReactComponent as IndFlag } from "../svg/Flag_of_India.svg";
 import { ReactComponent as USFlag } from "../svg/Flag_of_the_United_States.svg";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCurrency } from "../store";
 
 function NavigationBar({ routes }) {
+  const location = useLocation();
   const dispatch = useDispatch();
   const currency = useSelector((state) => state.currency);
   const activeLinkClasses =
@@ -25,23 +26,25 @@ function NavigationBar({ routes }) {
           );
         })}
       <div className="flex flex-row justify-end w-2/5 mr-20 items-center">
-        <div className="flex flex-col justify-around h-fit w-fit mr-5">
-          <span className="text-md">Currency:</span>
-          <div className="flex flex-row justify-between w-full cursor-pointer mt-1 items-center">
-            <IndFlag
-              className={`h-fit w-8 ${
-                currency === "INR" ? "border-2 border-blue-500" : ""
-              }`}
-              onClick={() => dispatch(changeCurrency("INR"))}
-            />
-            <USFlag
-              className={`h-fit w-8 ${
-                currency === "USD" ? "border-2 border-blue-500" : ""
-              }`}
-              onClick={() => dispatch(changeCurrency("USD"))}
-            />
+        {location.pathname === "/services" && (
+          <div className="flex flex-col justify-around h-fit w-fit mr-5">
+            <span className="text-md">Currency:</span>
+            <div className="flex flex-row justify-between w-full cursor-pointer mt-1 items-center">
+              <IndFlag
+                className={`h-fit w-8 ${
+                  currency === "INR" ? "border-2 border-blue-500" : ""
+                }`}
+                onClick={() => dispatch(changeCurrency("INR"))}
+              />
+              <USFlag
+                className={`h-fit w-8 ${
+                  currency === "USD" ? "border-2 border-blue-500" : ""
+                }`}
+                onClick={() => dispatch(changeCurrency("USD"))}
+              />
+            </div>
           </div>
-        </div>
+        )}
         {routes
           .filter((route) => {
             return route.path !== "/" && route.renderLink;

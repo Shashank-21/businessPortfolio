@@ -38,10 +38,7 @@ function NavigationPage() {
           classNames="page"
           unmountOnExit
         >
-          <div
-            ref={result.nodeRef}
-            className="page leading-loose tracking-wide"
-          >
+          <div ref={result.nodeRef} className="page">
             {currentOutlet}
           </div>
         </CSSTransition>
