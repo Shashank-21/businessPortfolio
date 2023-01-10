@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GoChevronDown, GoChevronUp } from "react-icons/go";
 import { useFetchServiceCategoriesQuery } from "../store";
 import { changeSelectedService } from "../store";
@@ -90,18 +90,21 @@ function ServiceCard({ service }) {
             </div>
           )}
           {service.samples[0] && (
-            <Fragment>
-              <h4 className="text-lg">Samples:</h4>
+            <div className="mt-3 text-center">
+              <h4 className="text-xl bold">Samples:</h4>
               <ul>
                 {service.samples.map((sample, index) => {
                   return (
-                    <li key={index}>
-                      <a href={sample.link}>{sample.title}</a>
+                    <li key={index} className="my-3 text-lg">
+                      {index + 1}.{" "}
+                      <a href={sample.link} target="_blank" rel="noreferrer">
+                        {sample.title}
+                      </a>
                     </li>
                   );
                 })}
               </ul>
-            </Fragment>
+            </div>
           )}
           {service.testimonials[0] && (
             <div>
@@ -135,7 +138,7 @@ function ServiceCard({ service }) {
           )}
         </div>
       )}
-      <div className="mt-10 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
         <Button
           className="mt-10 text-lg w-3/5 mx-5"
           primary
@@ -144,7 +147,7 @@ function ServiceCard({ service }) {
           Book Now!
         </Button>
         <Button
-          className="mt-10 text-xs w-fit mx-5"
+          className="mt-5 text-xs w-fit mx-5"
           secondary
           onClick={handleTestimonialClick}
         >
