@@ -28,22 +28,8 @@ function NavigationPage() {
   const result = routes.find((route) => route.path === location.pathname) ?? {};
 
   return (
-    <div>
-      <NavigationBar routes={routes} />
-      <SwitchTransition>
-        <CSSTransition
-          key={location.key}
-          nodeRef={result.nodeRef}
-          timeout={300}
-          classNames="page"
-          unmountOnExit
-        >
-          <div ref={result.nodeRef} className="page">
-            {currentOutlet}
-          </div>
-        </CSSTransition>
-      </SwitchTransition>
-      {location.pathname !== "/" && <Footer />}
+    <div ref={result.nodeRef} className="page">
+      {currentOutlet}
     </div>
   );
 }
