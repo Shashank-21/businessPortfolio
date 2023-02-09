@@ -20,7 +20,7 @@ function App() {
   const routeFromElements = createRoutesFromElements(
     <Route path="/" element={<NavigationPage />}>
       <Route index element={<HomePage />} />
-      <Route path="about" element={<AboutPage />} />
+      {/* <Route path="about" element={<AboutPage />} />
       <Route path="services" element={<ServicesPage />} />
       <Route path="contact" element={<ContactPage />} />
       <Route path="admin" element={<AdminPage />} />
@@ -28,7 +28,7 @@ function App() {
       <Route path="testimonials/" element={<TestimonialsPage />}>
         <Route index element={<TestimonialsViewPage />} />
         <Route path="give" element={<TestimonialsEntryPage />} />
-      </Route>
+      </Route> */}
     </Route>
   );
   const router = createBrowserRouter(routeFromElements);
