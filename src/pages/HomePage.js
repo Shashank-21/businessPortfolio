@@ -19,7 +19,7 @@ function HomePage() {
 
   return (
     <div className={`h-screen p-10`}>
-      <div className="flex flex-col items-center justify-around h-4/5 p-10">
+      {/* <div className="flex flex-col items-center justify-around h-4/5 p-10">
         <ExpandedSvg className="scale-75 text-center" />
         <p className="text-5xl text-center">
           Enabling your story to inspire the community
@@ -27,7 +27,11 @@ function HomePage() {
         <Button primary className="text-2xl" onClick={handleClick}>
           Know more
         </Button>
-      </div>
+      </div> */}
+      <h1 className="text-5xl">
+        Website under construction! Please reach out to me at
+        shashank@excelirate.net for any queries
+      </h1>
     </div>
   );
 }

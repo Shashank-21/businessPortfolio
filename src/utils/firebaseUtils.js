@@ -65,8 +65,8 @@ export const getCategoriesAndDocuments = async () => {
 
 export const addData = async (args) => {
   try {
-    const consultingRef = doc(db, "service-categories", args.category);
-    await updateDoc(consultingRef, args.updatedData);
+    const categoryRef = doc(db, "service-categories", args.category);
+    await updateDoc(categoryRef, args.updatedData);
   } catch (error) {
     console.log(error);
   }
